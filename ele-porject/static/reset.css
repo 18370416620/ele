@@ -1,0 +1,8 @@
+*{ margin: 0; padding: 0;}
+h1,h2,h3,h4,h5,h6,b,strong{ font-weight: 100;}
+body,html{ width: 100%;}
+a{ text-decoration: none;}
+li,em{ list-style: none;}
+input{ outline: none;}
+i{ font-style:normal;}
+.clear:after{content: "."; clear:both; display: block; height: 0; overflow: hidden; visibility: hidden;}
