@@ -1,13 +1,17 @@
 <template>
-    <div class="page" id="discover">
+    <page pageId="discover">
         <h1>发现</h1>
-    </div>
+    </page>
 </template>
 
 <script>
+import Page from "../../common/Page.vue"
 export default {
-    
+        components:{
+            [Page.name]:Page
+        }
 }
+
 </script>
 
 <style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="page" id="home">
+    <page id="home">
         <header id="header">
             <div class="dz">
                 福中路深圳市
@@ -8,25 +8,21 @@
         <div class="seach-warpper">
             <input type="text">
         </div>
-    </div>
+    </page>
 </template>
 
 <script>
+import Page from "../../common/Page.vue"
 export default {
-    
+        components:{
+            [Page.name]:Page
+        }
 }
 </script>
 
 <style>
-*{
-    margin: 0;
-    padding: 0;
-}
- .page{
-     width: 100%;
-     height: 100%;
 
- }
+
  #header{
      width: 100%;
      height: 0.45rem;

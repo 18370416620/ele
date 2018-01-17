@@ -1,5 +1,5 @@
 <template>
-    <nav class="tabs">
+    <nav class="tabs oe-top-px">
         <router-link class="tab" v-for="(tabItem,index) in tabsData" :key="index" :to="tabItem.path">
             {{tabItem.title}}
         </router-link>
@@ -36,16 +36,15 @@ export default {
         background: #f6f6f6;
         border-top: 0.003rem  solid #c8c8c8;
     }
+    .tabs:first-child{
+        color: #0089dc !important;        
+    }
     .tab{
         font-size: 0.1rem;
         display: block;
         float: left;
     }
-    .tabs::before{
-        border-top: 0.003rem  solid #c8c8c8;
-        transform: scaleY(0.5);
-        position: absolute;
-        top: -0.003rem;
-        content: "";
+    .tabs .tab.router-link-active{
+        color: #0089dc !important;
     }
 </style>
