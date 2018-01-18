@@ -1,5 +1,5 @@
 <template>
-        <div class="page" :id="pageId">
+        <div class="subpage" :id="pageId">
         <slot></slot>
         </div>
 </template>
@@ -20,6 +20,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0.45rem;
+    bottom: 0;
+    z-index: 5;
 }
 </style>

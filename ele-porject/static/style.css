@@ -1,10 +1,10 @@
 html,body,#app{
     width: 100%;
     height: 100%;
-
+    touch-action: none;
 }
 .noe-top-px{
-    position: absolute;
+    position: relative;
 }
 .noe-top-px::before{
     position: absolute;
@@ -18,7 +18,7 @@ html,body,#app{
     transform: scaleY(0.5); 
 }
 .noe-bottom-px{
-    position: absolute;
+    position: relative;
 }
 .noe-bottom-px::after{
     position: absolute;
