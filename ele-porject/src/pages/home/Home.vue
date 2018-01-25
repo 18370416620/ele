@@ -1,12 +1,17 @@
 <template>
     <div>
-        <page id="home">
+        <page :canLoadMore="true" pageId="home" ref="page"
+         @load-more-action="handleLoadMore">
+
      
         <home-header></home-header>
         <home-banner></home-banner>
-        <home-list></home-list>
+        <div class="newuser-info">
+            <img src="https://fuss10.elemecdn.com/3/c8/45b2ec2855ed55d90c45bf9b07abbpng.png?imageMogr/format/webp/thumbnail/!710x178r/gravity/Center/crop/710x178/" alt="">
+        </div>
+        <home-list ref="list" @list-change="handleListChange"></home-list>
         </page>
-
+        <router-view></router-view>
     </div>
 </template>
 
@@ -21,6 +26,21 @@ export default {
             [Header.name]:Header,
             [Banner.name]:Banner, 
             [List.name]:List
+        },
+        methods:{
+            handleListChange(){
+                //执行刷新页面
+                this.$refs.page.pageRefresh();
+            },
+            handleLoadMore(){
+                //让list请求下一页数据
+                this.$refs.list.requestData(()=>{
+                    //请求完成，执行停止加载更多的动画
+                    this.$refs.page.endLoadMoreAni();
+                });
+                
+                //如果请求完成就需要刷新滚动视图
+            }
         }
 }
 </script>
@@ -48,5 +68,13 @@ export default {
  .dz{
      font-size: 0.15rem;
      color: #fff;
+ }
+.newuser-info{
+    width: 100%;
+    text-align: center
+}
+.newuser-info img{
+     width: 3.41rem;
+     height: 0.85rem;
  }
 </style>
