@@ -1,7 +1,8 @@
 <template>
     <div>
         <page :canLoadMore="true" pageId="home" ref="page"
-         @load-more-action="handleLoadMore">
+         @load-more-action="handleLoadMore"
+         @page-scroll="handlePageScroll">
 
      
         <home-header></home-header>
@@ -11,6 +12,8 @@
         </div>
         <home-list ref="list" @list-change="handleListChange"></home-list>
         </page>
+        <!-- 上拉时还需要展示搜索框 -->
+        <search-bar  v-show="showSearchBar" :isActive="showSearchBar"></search-bar>
         <router-view></router-view>
     </div>
 </template>
@@ -18,14 +21,22 @@
 <script>
 import Page from "../../common/Page.vue"
 import Header from "../../components/home/index/Header.vue"
+import Search from "../../components/home/index/Search.vue"
 import Banner from "../../components/home/index/Banner.vue"
 import List from "../../components/home/index/List.vue"
 export default {
         components:{
             [Page.name]:Page,
             [Header.name]:Header,
+            [Search.name]:Search,
             [Banner.name]:Banner, 
             [List.name]:List
+            
+        },
+        data(){
+            return{
+                showSearchBar:false
+            }
         },
         methods:{
             handleListChange(){
@@ -40,6 +51,15 @@ export default {
                 });
                 
                 //如果请求完成就需要刷新滚动视图
+            },
+            //根据页面滚动的位子控制是否展示searchbar
+            handlePageScroll(y){
+                // console.log('y:'+y);
+                if(y<-50){
+                    this.showSearchBar=true;
+                }else{
+                    this.showSearchBar=false;
+                }
             }
         }
 }
@@ -48,7 +68,7 @@ export default {
 <style>
 
 
- #header{
+ /* #header{
      width: 100%;
      height: 0.45rem;
      background: #00a1ff;
@@ -64,11 +84,8 @@ export default {
     height: 0.33rem;
     border: 0;
     border-radius: 0.01rem;
-}
- .dz{
-     font-size: 0.15rem;
-     color: #fff;
- }
+} */
+
 .newuser-info{
     width: 100%;
     text-align: center

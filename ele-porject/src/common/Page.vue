@@ -52,7 +52,7 @@ export default {
                     let maxScrollY= this.pageScroll.maxScrollY;
                     let y= this.pageScroll.y;   
                     //显示上拉可以加载更多  maxScrollY< y >y,maxScrollY+40
-                    console.log(y,maxScrollY);
+                    // console.log(y,maxScrollY);
                     if(y=>maxScrollY){
                         this.downInfo='加载中'
                         this.isDown = 0;
@@ -77,7 +77,7 @@ export default {
                     //达到刷新条件 y<=maxScroll 请求下一页列表数据
                     else if(y<= maxScrollY){    
                         this.isDown= 2;
-                        console.log('达到了加载更多的条件');
+                        // console.log('达到了加载更多的条件');
                         // setTimeout(this.endLoadMoreAni, 2000);
                         this.$emit('load-more-action')
                 }
@@ -86,6 +86,10 @@ export default {
 
         } 
         
+        //home组件需要监听滚动的位置
+        this.pageScroll.on('scroll',()=>{
+            this.$emit('page-scroll',this.pageScroll.y)
+        })
     }
   
 }
